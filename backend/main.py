@@ -23,7 +23,9 @@ app.add_middleware(
 def root():
     return {"status": "ok", "service": "YouTube Downloader API"}
 
-
+@app.get("api/download")
+def get_video():
+    return pass
 
 if __name__ == "__main__":
     import uvicorn
