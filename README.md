@@ -11,6 +11,7 @@ A free web-based media downloader project built with **React** and **Python**. T
 - [ ] URL validation
 - [ ] Video metadata extraction
 - [ ] Available format selection
+- [ ] Batch URL Processing — process multiple video URLs in one session
 - [ ] Audio and video download support
 - [ ] Download progress and error handling
 - [ ] Responsive user interface
