@@ -1,18 +1,118 @@
 @import 'tailwindcss';
 
 
-@layer base {
-  body {
-    @apply bg-gray-900 text-white antialiased;
+:root {
+  --bg: #f6f7f4;
+  --surface: #ffffff;
+  --text: #1c2321;
+  --muted: #66706b;
+  --line: #dfe3de;
+  --accent: #1f6f5c;
+  --accent-text: #ffffff;
+  --danger: #b3382c;
+  --ok: #1f6f5c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141a18;
+    --surface: #1c2421;
+    --text: #e8ece9;
+    --muted: #8f9a94;
+    --line: #2d3733;
+    --accent: #4fb89d;
+    --accent-text: #0f1513;
+    --danger: #ef7d70;
+    --ok: #4fb89d;
   }
 }
 
-@layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+.app { max-width: 640px; margin: 0 auto; padding: 32px 16px 64px; }
+header h1 { font-size: 1.75rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+header p { margin: 0 0 24px; color: var(--muted); }
+
+button, .utama, input { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tambah { display: flex; gap: 8px; }
+.tambah input {
+  flex: 1; min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+.tambah button, .utama {
+  padding: 12px 18px;
+  border: 0; border-radius: 8px;
+  background: var(--accent); color: var(--accent-text);
+  font-weight: 600; cursor: pointer;
+  text-decoration: none; text-align: center;
+}
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.error { color: var(--danger); margin: 12px 0 0; font-size: 0.95rem; }
+.catatan { color: var(--muted); font-size: 0.9rem; margin: 16px 0 0; }
+
+.daftar, .progres {
+  margin-top: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+.daftar-kepala { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.daftar-kepala h2 { font-size: 1.05rem; margin: 0; }
+.daftar-kepala span { color: var(--muted); font-size: 0.9rem; }
+.kosong { color: var(--muted); margin: 8px 0; }
+
+ul { list-style: none; margin: 0; padding: 0; }
+li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+li:first-child { border-top: 0; }
+.info { min-width: 0; display: flex; flex-direction: column; }
+.info strong { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.info small { color: var(--muted); }
+
+.hapus, .sekunder {
+  background: none; border: 1px solid var(--line); color: var(--text);
+  border-radius: 6px; padding: 6px 12px; cursor: pointer;
+}
+.hapus:hover { color: var(--danger); border-color: var(--danger); }
+
+.aksi { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.format { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.format button { background: none; border: 0; padding: 10px 14px; color: var(--muted); cursor: pointer; }
+.format button.aktif { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+
+.bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 8px 0 12px; }
+.bar div { height: 100%; background: var(--accent); transition: width 0.4s ease; }
+
+.status { font-size: 0.85rem; white-space: nowrap; color: var(--muted); }
+.status.done { color: var(--ok); font-weight: 600; }
+.status.failed { color: var(--danger); font-weight: 600; }
+.status.downloading { color: var(--text); }
+
+@media (max-width: 480px) {
+  .tambah { flex-direction: column; }
+  .aksi { flex-direction: column; align-items: stretch; }
+  .format button { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar div { transition: none; }
 }

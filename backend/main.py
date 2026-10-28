@@ -52,7 +52,7 @@ def preview(req: PreviewReq):
         raise HTTPException(status_code=400, detail=str(e))
 
 
-def proses_batch(bid):
+def proses_batch(bid:int):
     b = batches[bid]
     folder =f'{BASE}/{bid}'
     os.makedirs(folder, exist_ok=True)
